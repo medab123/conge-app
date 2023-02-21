@@ -31,10 +31,70 @@
 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
+
+
         <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            <strong>Nom:</strong>
+            {!! Form::text('name', null, array('placeholder' => 'Nom','class' => 'form-control')) !!}
         </div>
+
+        <div class="form-group">
+            <strong>Prenom:</strong>
+            {!! Form::text('Prenom', null, array('placeholder' => 'Prenom','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>CIN:</strong>
+            {!! Form::text('CIN', null, array('placeholder' => 'CIN','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Date naissance :</strong>
+            {!! Form::date('Date_naissance', null, array('placeholder' => 'date naissance','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Adresse :</strong>
+            {!! Form::text('Adresse', null, array('placeholder' => 'Adresse','class' => 'form-control')) !!}
+        </div>
+
+
+        <div class="form-group">
+            <strong>Ville :</strong>
+            {!! Form::text('Ville', null, array('placeholder' => 'Ville','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>CNSS :</strong>
+            {!! Form::text('CNSS', null, array('placeholder' => 'CNSS','class' => 'form-control')) !!}
+        </div>
+
+
+        <div class="form-group">
+            <strong>Solde   :</strong>
+            {!! Form::text('Solde', null, array('placeholder' => 'Solde','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Solde Global  :</strong>
+            {!! Form::text('Solde_Global', null, array('placeholder' => 'SoldeG','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Salire  :</strong>
+            {!! Form::text('Salire', null, array('placeholder' => 'Salire','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Date contrat   :</strong>
+            {!! Form::date('Date_contrat', null, array('placeholder' => 'Date contrat','class' => 'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <strong>Projet   :</strong>
+            {!! Form::text('Projet', null, array('placeholder' => 'Projet','class' => 'form-control')) !!}
+        </div>
+
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">

@@ -24,9 +24,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
+                <strong>Nom:</strong>
                 {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
             </div>
+            
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

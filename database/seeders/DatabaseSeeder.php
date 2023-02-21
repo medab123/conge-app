@@ -37,17 +37,17 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678')
         ]);
         $gerant = User::create([
-            'name' => 'gerant', //shiha nn kifax katktb geron gerant
+            'name' => 'gerant', 
             'email' => 'gerant@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $dircteur = User::create([
-            'name' => 'dircteur', //shiha nn kifax katktb geron gerant
+            'name' => 'dircteur', 
             'email' => 'dircteur@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $employer = User::create([
-            'name' => 'employer', //shiha nn kifax katktb geron gerant
+            'name' => 'employer', 
             'email' => 'employer@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
