@@ -9,9 +9,9 @@
     @endif
 
     <div class="card " style=" background-color: rgb(255, 255, 255)">
-        <div class="card-header d-inline ">{{ __('Users Management') }}
+        <div class="card-header d-inline ">{{ __('Demandes Management') }}
             @can('user-create')
-                <a class="btn btn-success btn-sm float-right d-inline" href="{{ route('users.create') }}">Create New User</a>
+                <a class="btn btn-success btn-sm float-right d-inline" href="{{ route('demandes.create') }}">Create New Demande</a>
             @endcan
         </div>
         <div class="card-body">
@@ -29,33 +29,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $key => $user)
+                        @foreach ($demandes as $demande)
                             <tr>
-                                <td class="text-center text-nowrap">{{ $user->id }}</td>
-                                <td class="text-center text-nowrap">{{ $user->name }}</td>
-                                <td class="text-center text-nowrap">{{ $user->email }}</td>
+                                <td class="text-center text-nowrap">{{ $demande->id }}</td>
+                                <td class="text-center text-nowrap">{{ $demande->name }}</td>
+                                <td class="text-center text-nowrap">{{ $demande->email }}</td>
 
                                 <td class="text-center text-nowrap">
-                                    @if (!empty($user->getRoleNames()))
-                                        @foreach ($user->getRoleNames() as $v)
+                                    @if (!empty($demande->getRoleNames()))
+                                        @foreach ($demande->getRoleNames() as $v)
                                             <label class="badge badge-success">{{ $v }}</label>
                                         @endforeach
                                     @endif
                                 </td>
                                 <td class="text-center text-nowrap"><label
-                                        class="badge badge-{{ $user->is_active == true ? 'success' : 'danger' }}">{{ $user->is_active == true ? 'Active' : 'Desactiver' }}</label>
+                                        class="badge badge-{{ $demande->is_active == true ? 'success' : 'danger' }}">{{ $demande->is_active == true ? 'Active' : 'Desactiver' }}</label>
                                 </td>
 
                                 <td class="text-right text-nowrap">
 
-                                    <a class="btn  btn-sm" href="{{ route('users.show', $user->id) }}"><i
+                                    <a class="btn  btn-sm" href="{{ route('demandes.show', $demande->id) }}"><i
                                             class="fa fa-eye text-info" aria-hidden="true"></i></a>
                                     @can('user-edit')
-                                        <a class="btn  btn-sm" href="{{ route('users.edit', $user->id) }}"><i
+                                        <a class="btn  btn-sm" href="{{ route('demandes.edit', $demande->id) }}"><i
                                                 class="fa text-primary fa-edit"></i></a>
                                     @endcan
                                     @can('user-delete')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['demandes.destroy', $demande->id], 'style' => 'display:inline']) !!}
                                         <button type="submit" class="btn  btn-sm"><i class="fa fa-trash text-danger "
                                                 aria-hidden="true"></i></button>
                                         {!! Form::close() !!}

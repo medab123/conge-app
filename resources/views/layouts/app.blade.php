@@ -67,7 +67,10 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        <div class="container pt-5" >
+             @yield('content')
+        </div>
+       
     </div>
     <!-- /.content-wrapper -->
 

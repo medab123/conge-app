@@ -19,6 +19,15 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('demandes.index') }}" class="nav-link">
+                    <i class="nav-icon fa fa-file" aria-hidden="true"></i>
+                    <p>
+                        {{ __('Demandes') }}
+                    </p>
+                </a>
+            </li>
+            
 
             <li class="nav-item">
                 <a href="{{ route('users.index') }}" class="nav-link">
@@ -28,8 +37,17 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('roles.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        {{ __('Roles') }}
+                    </p>
+                </a>
+            </li>
 
             <li class="nav-item">
+
                 <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon far fa-address-card"></i>
                     <p>

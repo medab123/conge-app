@@ -31,18 +31,36 @@ class DatabaseSeeder extends Seeder
             Permission::create(['name' => $permission]);
         }
 
-        $user = User::create([
-            'name' => 'khadija ennasraoui', 
-            'email' => 'ennasraouikhadija@gmail.com',
+        $admin = User::create([
+            'name' => 'admin', // smit xarika MasterArchives
+            'email' => 'admin@master-archives.ma',
+            'password' => bcrypt('12345678')
+        ]);
+        $gerant = User::create([
+            'name' => 'gerant', //shiha nn kifax katktb geron gerant
+            'email' => 'gerant@master-archives.ma',
+            'password' => bcrypt('12345678')
+        ]);
+        $dircteur = User::create([
+            'name' => 'dircteur', //shiha nn kifax katktb geron gerant
+            'email' => 'dircteur@master-archives.ma',
+            'password' => bcrypt('12345678')
+        ]);
+        $employer = User::create([
+            'name' => 'employer', //shiha nn kifax katktb geron gerant
+            'email' => 'employer@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
     
-        $role = Role::create(['name' => 'admin']);
+        $roleadmin = Role::create(['name' => 'admin']);
+        $rolegerant = Role::create(['name' => 'gerant']);
+        $roledircteur = Role::create(['name' => 'dircteur']);
+        $roleemployer = Role::create(['name' => 'employer']);
      
         $permissions = Permission::pluck('id','id')->all();
    
-        $role->syncPermissions($permissions);
+        $roleadmin->syncPermissions($permissions);
      
-        $user->assignRole([$role->id]);
+        $admin->assignRole([$roleadmin->id]);
     }
 }
