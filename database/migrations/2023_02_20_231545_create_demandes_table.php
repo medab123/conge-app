@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("demandeur_id");
             $table->date("date_debut");
+            $table->string("date_debut_type");
             $table->date("date_fin");
+            $table->string("date_fin_type");
             $table->text("raison")->nullable();
+            $table->float("duration");
+            $table->integer("status")->nullable();
             $table->foreign('demandeur_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

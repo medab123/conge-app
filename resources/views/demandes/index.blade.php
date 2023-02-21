@@ -20,40 +20,33 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="text-center  text-nowrap">#</th>
-                            <th class="text-center  text-nowrap">Name</th>
-                            <th class="text-center  text-nowrap">Email</th>
-                            <th class="text-center  text-nowrap">Roles</th>
-                            <th class="text-center  text-nowrap">Active</th>
+                            <th class="text-center  text-nowrap">Date début</th>
+                            <th class="text-center  text-nowrap">Date fin </th>
+                            <th class="text-center  text-nowrap">Cause</th>
+                            <th class="text-center  text-nowrap">Durée</th>
+                            <!-- <th class="text-center  text-nowrap">Type</th> --->
+                            <th class="text-center  text-nowrap">Statu</th>
+                            <th class="text-center  text-nowrap">Demandée le</th>
+                            <th class="text-center  text-nowrap">Modifiée le</th>
 
-                            <th class="text-right pr-4">Action</th>
+                            <th class="text-right pr-4"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($demandes as $demande)
                             <tr>
-                                <td class="text-center text-nowrap">{{ $demande->id }}</td>
-                                <td class="text-center text-nowrap">{{ $demande->name }}</td>
-                                <td class="text-center text-nowrap">{{ $demande->email }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->id }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->date_debut }}({{ $demande->date_debut_type}})</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->date_fin }}({{ $demande->date_fin_type}})</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->raison }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->duration }}</td>
+                                <td class="text-center text-nowrap fw-lighter"><span class="badge  {{ $demande->status <= 1 ? "badge-warning" : ($demande->status == 3 ?  "badge-success":"badge-danger") }}">{{ $demande->status <= 1 ? "En attend" : ($demande->status == 3 ?  "Accepte":"refusé") }}</span></td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->created_at }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->updated_at }}</td>
+                                <td class="text-right text-nowrap fw-lighter">
 
-                                <td class="text-center text-nowrap">
-                                    @if (!empty($demande->getRoleNames()))
-                                        @foreach ($demande->getRoleNames() as $v)
-                                            <label class="badge badge-success">{{ $v }}</label>
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td class="text-center text-nowrap"><label
-                                        class="badge badge-{{ $demande->is_active == true ? 'success' : 'danger' }}">{{ $demande->is_active == true ? 'Active' : 'Desactiver' }}</label>
-                                </td>
-
-                                <td class="text-right text-nowrap">
-
-                                    <a class="btn  btn-sm" href="{{ route('demandes.show', $demande->id) }}"><i
-                                            class="fa fa-eye text-info" aria-hidden="true"></i></a>
-                                    @can('user-edit')
-                                        <a class="btn  btn-sm" href="{{ route('demandes.edit', $demande->id) }}"><i
-                                                class="fa text-primary fa-edit"></i></a>
-                                    @endcan
+                                   
+                                   
                                     @can('user-delete')
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['demandes.destroy', $demande->id], 'style' => 'display:inline']) !!}
                                         <button type="submit" class="btn  btn-sm"><i class="fa fa-trash text-danger "
