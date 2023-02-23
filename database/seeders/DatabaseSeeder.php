@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'employer@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
+        
     
         $roleadmin = Role::create(['name' => 'admin']);
         $rolegerant = Role::create(['name' => 'gerant']);

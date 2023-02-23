@@ -17,17 +17,7 @@ return new class extends Migration
            
             $table->id();
             $table->string('name');
-            $table->string('Prenom');
-            $table->string('CIN');
-            $table->string('Date_naissance');
-            $table->string('Adresse');
-            $table->string('Ville');
-            $table->string('CNSS');
-            $table->string('Solde');
-            $table->string('Solde_Global');
-            $table->string('Salire');
-            $table->string('Date_contrat');
-            $table->string('Projet');
+           
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
