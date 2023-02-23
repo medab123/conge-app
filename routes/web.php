@@ -27,15 +27,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
-   /* Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    /* Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');*/
-   Route::resource('roles', RoleController::class);
-   Route::resource('users', UserController::class);
-   Route::resource('demandes', DemandeController::class);
-   Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class,"calc_duration"]);
-  // bghit nxofk 
-  // khti mzl fay9a 
-  // ok 
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('demandes', DemandeController::class);
+    Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class, "calc_duration"]);
+
+    Route::prefix('hr')->group(function () {
+        Route::get("demandes/list",[DemandeController::class,"hrListDemande"])->name("hr.demandes.list");
+        Route::get("demandes/rejete/{id}",[DemandeController::class,"rejete"])->name("hr.demandes.rejete");
+        Route::get("demandes/validat/{id}",[DemandeController::class,"validat"])->name("hr.demandes.validat");
+    });
 
 });

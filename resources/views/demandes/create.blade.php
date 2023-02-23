@@ -17,14 +17,13 @@
     <div class="card">
         <div class="card-header">{{ __('Ajouter une demande') }}</div>
         <div class="card-body">
-            <form method="POST" action="{{ route("demandes.store") }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('demandes.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class=" px-2 py-2 mb-2 ">
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="client">{{ __('Date de debut') }}</label>
-                            <input type="date" class="form-control form-control-sm"
-                                name="date_debut" required >
+                            <input type="date" class="form-control form-control-sm" name="date_debut" required>
                         </div>
                         <div class="form-group col-6">
                             <label for="client">{{ __('Temps') }}</label>
@@ -35,12 +34,12 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="commercial">{{ __('Date de fin') }}</label>
-                            <input type="date" class="form-control form-control-sm " name="date_fin" required >
+                            <input type="date" class="form-control form-control-sm " name="date_fin" required>
                         </div>
                         <div class="form-group col-6">
                             <label for="client">{{ __('Temps') }}</label>
                             <select name="date_fin_type" class="form-control form-control-sm">
-                                <option value="Morning" >Matin</option>
+                                <option value="Morning">Matin</option>
                                 <option value="Afternoon" selected="">Après-midi</option>
                             </select>
                         </div>
@@ -50,9 +49,9 @@
                         </div>
                         <div class="form-group col">
                             <label for="quantite">{{ __('Durée') }}</label>
-                            <input  type="text" class="form-control form-control-sm disabled" disabled>
+                            <input type="text" class="form-control form-control-sm disabled" disabled>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="row mt-2">

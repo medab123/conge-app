@@ -10,10 +10,7 @@
 
     <div class="card " style=" background-color: rgb(255, 255, 255)">
         <div class="card-header d-inline ">{{ __('Demandes Management') }}
-            @can('demande-create')
-                <a class="btn btn-success btn-sm float-right d-inline" href="{{ route('demandes.create') }}">Create New
-                    Demande</a>
-            @endcan
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,11 +18,11 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="text-center  text-nowrap">#</th>
+                            <th class="text-center  text-nowrap">Employer</th>
                             <th class="text-center  text-nowrap">Date début</th>
                             <th class="text-center  text-nowrap">Date fin </th>
                             <th class="text-center  text-nowrap">Cause</th>
                             <th class="text-center  text-nowrap">Durée</th>
-                            <!-- <th class="text-center  text-nowrap">Type</th> --->
                             <th class="text-center  text-nowrap">Statu</th>
                             <th class="text-center  text-nowrap">Demandée le</th>
                             <th class="text-center  text-nowrap">Modifiée le</th>
@@ -37,6 +34,7 @@
                         @foreach ($demandes as $demande)
                             <tr>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->id }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->name }}</td>
                                 <td class="text-center text-nowrap fw-lighter">
                                     {{ $demande->date_debut }}({{ $demande->date_debut_type }})</td>
                                 <td class="text-center text-nowrap fw-lighter">
@@ -51,8 +49,21 @@
                                 <td class="text-right text-nowrap fw-lighter">
 
 
-
-                                    @can('user-delete')
+                                    @can('demande-validat')
+                                        @if ($demande->status == 0)
+                                            <a href="{{ route('hr.demandes.validat', ['id' => $demande->id]) }}"
+                                                class="btn  btn-sm"><i class="fa fa-check text-success" aria-hidden="true"></i>
+                                            </a>
+                                        @endif
+                                    @endcan
+                                    @can('demande-rejete')
+                                        @if ($demande->status == 0)
+                                            <a href="{{ route('hr.demandes.rejete', ['id' => $demande->id]) }}"
+                                                class="btn  btn-sm"><i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                            </a>
+                                        @endif
+                                    @endcan
+                                    @can('demande-delete')
                                         {!! Form::open([
                                             'method' => 'DELETE',
                                             'route' => ['demandes.destroy', $demande->id],
@@ -62,6 +73,7 @@
                                                 aria-hidden="true"></i></button>
                                         {!! Form::close() !!}
                                     @endcan
+
                                 </td>
                             </tr>
                         @endforeach

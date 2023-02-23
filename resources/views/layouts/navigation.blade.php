@@ -9,8 +9,7 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-            data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="{{ route('home') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -77,11 +76,19 @@
                         </a>
                     </li>
                 </ul>
-                
+
             </li>
 
-            
-           
+            <li class="nav-item">
+                <a href="{{ route('hr.demandes.list') }}" class="nav-link">
+             
+                   <i class="nav-icon fas fa-tasks"></i>
+                    <p>
+                        {{ __('Demandes à approuver') }}
+                    </p>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon far fa-address-card"></i>
@@ -90,7 +97,7 @@
                     </p>
                 </a>
             </li>
-           
+
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

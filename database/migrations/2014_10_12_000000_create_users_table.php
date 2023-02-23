@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger("manager_id")->nullable();
+            $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
+
+
             $table->rememberToken();
             $table->timestamps();
         });
