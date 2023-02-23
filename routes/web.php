@@ -30,6 +30,14 @@ Route::middleware('auth')->group(function () {
     /* Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');*/
+ HEAD
+   Route::resource('roles', RoleController::class);
+   Route::resource('users', UserController::class);
+   Route::resource('demandes', DemandeController::class);
+   Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class,"calc_duration"]);
+  
+});
+=======
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('demandes', DemandeController::class);
@@ -43,3 +51,4 @@ Route::middleware('auth')->group(function () {
     });
 
 });
+>>>>>>> 9eed11921ebc93f43bf396d636ee90b6bc3aca6f
