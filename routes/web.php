@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get("demandes/list",[DemandeController::class,"hrListDemande"])->name("hr.demandes.list");
         Route::get("demandes/rejete/{id}",[DemandeController::class,"rejete"])->name("hr.demandes.rejete");
         Route::get("demandes/validat/{id}",[DemandeController::class,"validat"])->name("hr.demandes.validat");
+        Route::get("employers/",[UserController::class,"getEmployes"])->name("hr.employer.index");
     });
 
 });

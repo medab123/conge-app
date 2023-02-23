@@ -149,4 +149,11 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }
+
+
+
+    public function getEmployes(){
+        $employes = User::join("users as m","m.id","users.manager_id")->select("users.*","m.name")->get();
+        return view("hr.employes.index",compact("employes"));
+    }
 }

@@ -78,17 +78,32 @@
                 </ul>
 
             </li>
-
             <li class="nav-item">
-                <a href="{{ route('hr.demandes.list') }}" class="nav-link">
-             
-                   <i class="nav-icon fas fa-tasks"></i>
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users-cog"></i>
                     <p>
-                        {{ __('Demandes à approuver') }}
+                        {{ __('HR') }}
+                        <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-            </li>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('hr.demandes.list') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Demandes à approuver') }}</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('hr.employer.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Les employer') }}</p>
+                        </a>
+                    </li>
+                </ul>
 
+            </li>
             <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon far fa-address-card"></i>

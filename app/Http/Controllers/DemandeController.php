@@ -18,8 +18,8 @@ class DemandeController extends Controller
         $this->middleware('permission:demande-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:demande-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:demande-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:demande-rejete', ['only' => ['rejete','hrListDemande']]);
-        $this->middleware('permission:demande-validat', ['only' => ['validat','hrListDemande']]);
+        $this->middleware('permission:demande-rejete', ['only' => ['rejete', 'hrListDemande']]);
+        $this->middleware('permission:demande-validat', ['only' => ['validat', 'hrListDemande']]);
     }
     public function index()
     {
@@ -28,7 +28,7 @@ class DemandeController extends Controller
     }
     public function hrListDemande()
     {
-        $demandes = Demande::join("users","users.id","demandes.demandeur_id")->select("demandes.*","users.name")->where('manager_id', Auth::user()->id)->get();
+        $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")->select("demandes.*", "users.name")->where('manager_id', Auth::user()->id)->get();
         return view("hr.demandes.index", compact("demandes"));
     }
     public function validat($id)
@@ -63,8 +63,18 @@ class DemandeController extends Controller
         $demande->save();
         return redirect()->back();
     }
+    /**
+     * Calculates the duration between two dates, taking into account the start and end types of the dates.
+     *
+     * @param string $dt_start The start date in ISO 8601 format (e.g. "2022-02-01").
+     * @param string $dt_fin The end date in ISO 8601 format (e.g. "2022-02-10").
+     * @param string $start_type The type of the start date ("Morning" or "Afternoon").
+     * @param string $fin_type The type of the end date ("Morning" or "Afternoon").
+     * @return float The duration in days, with fractions for partial days.
+     */
     public function calc_duration($dt_start, $dt_fin, $start_type, $fin_type)
     {
+
         $dureation = Carbon::parse($dt_fin)->diffInDays($dt_start);
         $dureation += 1;
         if ($fin_type == "Morning" || $start_type == "Afternoon")

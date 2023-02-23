@@ -49,9 +49,6 @@
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->created_at }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->updated_at }}</td>
                                 <td class="text-right text-nowrap fw-lighter">
-
-
-
                                     @can('user-delete')
                                         {!! Form::open([
                                             'method' => 'DELETE',
@@ -65,6 +62,7 @@
                                 </td>
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
