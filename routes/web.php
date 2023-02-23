@@ -34,8 +34,5 @@ Route::middleware('auth')->group(function () {
    Route::resource('users', UserController::class);
    Route::resource('demandes', DemandeController::class);
    Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class,"calc_duration"]);
-  // bghit nxofk 
-  // khti mzl fay9a 
-  // ok 
-
+  
 });
