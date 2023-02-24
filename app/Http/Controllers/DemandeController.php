@@ -21,9 +21,10 @@ class DemandeController extends Controller
         $this->middleware('permission:demande-rejete', ['only' => ['rejete', 'hrListDemande']]);
         $this->middleware('permission:demande-validat', ['only' => ['validat', 'hrListDemande']]);
     }
-    public function index()
+    public function index($user_id = null)
     {
-        $demandes = Demande::where('demandeur_id', Auth::user()->id)->get();
+        if( $user_id == null) $user_id = Auth::user()->id;
+        $demandes = Demande::where('demandeur_id', $user_id)->get();
         return view("demandes.index", compact("demandes"));
     }
     public function hrListDemande()
@@ -44,13 +45,17 @@ class DemandeController extends Controller
         $demande->status = 3;
         $demande->save();
     }
-    public function create()
+    public function create($user_id = null)
     {
-        return view("demandes.create");
+        
+        return view("demandes.create",["user_id"=>$user_id]);
     }
     public function store(Request $request)
     {
-
+        $user_id = $request->input("user_id");
+       
+        if( $user_id == null) $user_id = Auth::user()->id;
+        
         $demande = new Demande();
         $demande->demandeur_id = Auth::user()->id;
         $demande->status = 0;

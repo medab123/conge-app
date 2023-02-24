@@ -15,17 +15,21 @@
             @endcan
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="min-height: 300px">
                 <table class="table table-striped table-sm ">
                     <thead class="thead-light">
                         <tr>
                             <th class="text-center  text-nowrap">#</th>
-                            <th class="text-center  text-nowrap">Name</th>
-                            <th class="text-center  text-nowrap">Email</th>
-                            <th class="text-center  text-nowrap">Roles</th>
-                            <th class="text-center  text-nowrap">Active</th>
+                            <th class="text-center  text-nowrap">Nom</th>
+                            <th class="text-center  text-nowrap">Prenom</th>
+                            <th class="text-center  text-nowrap">E-mail</th>
+                            <th class="text-center  text-nowrap">Contrat</th>
+                            <th class="text-center  text-nowrap">Manager</th>
+                            <th class="text-center  text-nowrap">Cin</th>
+                            <th class="text-center  text-nowrap">Date d'embauche</th>
+                            <th class="text-center  text-nowrap">position</th>
 
-                            <th class="text-right pr-4">Action</th>
+                            <th class="text-right pr-4"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,33 +37,25 @@
                             <tr>
                                 <td class="text-center text-nowrap">{{ $employe->id }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->name }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->lname }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->email }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->contrat_type }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->manager }}</td>
 
-                                <td class="text-center text-nowrap">
-                                    @if (!empty($user->getRoleNames()))
-                                        @foreach ($user->getRoleNames() as $v)
-                                            <label class="badge badge-success">{{ $v }}</label>
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td class="text-center text-nowrap"><label
-                                        class="badge badge-{{ $user->is_active == true ? 'success' : 'danger' }}">{{ $user->is_active == true ? 'Active' : 'Desactiver' }}</label>
-                                </td>
+                                <td class="text-center text-nowrap">{{ $employe->cin }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->contrat_date }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->position }}</td>
 
                                 <td class="text-right text-nowrap">
-
-                                    <a class="btn  btn-sm" href="{{ route('users.show', $user->id) }}"><i
-                                            class="fa fa-eye text-info" aria-hidden="true"></i></a>
-                                    @can('user-edit')
-                                        <a class="btn  btn-sm" href="{{ route('users.edit', $user->id) }}"><i
-                                                class="fa text-primary fa-edit"></i></a>
-                                    @endcan
-                                    @can('user-delete')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
-                                        <button type="submit" class="btn  btn-sm"><i class="fa fa-trash text-danger "
-                                                aria-hidden="true"></i></button>
-                                        {!! Form::close() !!}
-                                    @endcan
+                                    <div class="dropdown d-inline">
+                                        <button class="btn btn-sm " type="button" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{ route('hr.demandes.employer',$employe->id) }}">List Des conges</a>
+                                            <a class="dropdown-item" href="{{ route('users.edit',$employe->id) }}">Modifier l'employer</a>
+                                            <a class="dropdown-item" href="{{ route('hr.demandes.create',$employe->id) }}">Créer demande d'absence</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

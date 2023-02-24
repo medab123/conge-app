@@ -13,29 +13,11 @@
         </div>
     @endif
 
-<<<<<<< HEAD
-<div class="card " style=" background-color: rgb(255, 255, 255)">
-<div class="card-header d-inline ">
-    <a class="btn btn-primary mr-3" href="{{ route('users.index') }}"> <i class="fa fa-arrow-left"
-            aria-hidden="true"></i></a>
-    {{ __('Edit User') }}
-</div>
-<div class="card-body">
-    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nom:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
-            </div>
-            
-=======
     <div class="card " style=" background-color: rgb(255, 255, 255)">
         <div class="card-header d-inline ">
             <a class="btn btn-primary mr-3" href="{{ route('users.index') }}"> <i class="fa fa-arrow-left"
                     aria-hidden="true"></i></a>
             {{ __('Edit User') }}
->>>>>>> 9eed11921ebc93f43bf396d636ee90b6bc3aca6f
         </div>
         <div class="card-body">
             {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
