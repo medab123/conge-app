@@ -9,9 +9,9 @@
     @endif
 
     <div class="card " style=" background-color: rgb(255, 255, 255)">
-        <div class="card-header d-inline ">{{ __('Users Management') }}
+        <div class="card-header d-inline ">{{ __('List des employes') }}
             @can('user-create')
-                <a class="btn btn-success btn-sm float-right d-inline" href="{{ route('users.create') }}">Create New User</a>
+                <a class="btn btn-success btn-sm float-right d-inline" href="{{ route('users.create') }}">Create new employe</a>
             @endcan
         </div>
         <div class="card-body">
@@ -39,12 +39,12 @@
                                 <td class="text-center text-nowrap">{{ $employe->name }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->lname }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->email }}</td>
-                                <td class="text-center text-nowrap">{{ $employe->contrat_type }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->contrat->name }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->manager }}</td>
 
                                 <td class="text-center text-nowrap">{{ $employe->cin }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->contrat_date }}</td>
-                                <td class="text-center text-nowrap">{{ $employe->position }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->position->name }}</td>
 
                                 <td class="text-right text-nowrap">
                                     <div class="dropdown d-inline">

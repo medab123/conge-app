@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContratController;
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::get("demandes/rejete/{id}",[DemandeController::class,"rejete"])->name("hr.demandes.rejete");
         Route::get("demandes/validat/{id}",[DemandeController::class,"validat"])->name("hr.demandes.validat");
         Route::get("employers/",[UserController::class,"getEmployes"])->name("hr.employer.index");
+        Route::resource("contrats/",ContratController::class,["names" => "hr.contrats"]);
+        Route::resource("positions/",PositionController::class,["names" => "hr.positions"]);
     });
 
 });

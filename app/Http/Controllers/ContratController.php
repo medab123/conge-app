@@ -14,22 +14,22 @@ class ContratController extends Controller
 	}*/
 	public function index(){
 		$contrats = Contrat::all();
-		return view("contrats.index",compact("contrats"));
+		return view("hr.contrats.index",compact("contrats"));
 	}
     public function create(){
 		//$contrat = Contrat::find($id);
-		return view("contrats.create");
+		return view("hr.contrats.create");
 	}
     public function edit($id){
 		$contrat = Contrat::find($id);
-		return view("contrats.create",compact("contrat"));
+		return view("hr.contrats.create",compact("contrat"));
 	}
 	public function store(Request $request){
 		$contrat = new Contrat();
 		$contrat->name = $request->input("name");
         $contrat->nb_jours = $request->input("nb_jours");
 		$contrat->save();
-		return back()->with('success', 'Contrat created successfully');
+		return redirect()->route("hr.contrats.index")->with('success', 'Contrat created successfully');
 	}
 	public function update(Request $request,$id){
 		$contrat = Contrat::find($id);
