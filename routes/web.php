@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContratController;
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,24 +32,22 @@ Route::middleware('auth')->group(function () {
     /* Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');*/
- HEAD
    Route::resource('roles', RoleController::class);
    Route::resource('users', UserController::class);
    Route::resource('demandes', DemandeController::class);
    Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class,"calc_duration"]);
-  
-});
-=======
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('demandes', DemandeController::class);
-    Route::get('demandes/calc_duration/{dt_start}/{dt_fin}/{start_type}/{fin_type}', [DemandeController::class, "calc_duration"]);
+
 
     Route::prefix('hr')->group(function () {
+        Route::get("demandes/create/{id}",[DemandeController::class,"create"])->name("hr.demandes.create");
+       // Route::get("demandes/create",[DemandeController::class,"create"])->name("hr.demandes.create");
         Route::get("demandes/list",[DemandeController::class,"hrListDemande"])->name("hr.demandes.list");
+        Route::get("demandes/employer/{id}",[DemandeController::class,"index"])->name("hr.demandes.employer");
         Route::get("demandes/rejete/{id}",[DemandeController::class,"rejete"])->name("hr.demandes.rejete");
         Route::get("demandes/validat/{id}",[DemandeController::class,"validat"])->name("hr.demandes.validat");
+        Route::get("employers/",[UserController::class,"getEmployes"])->name("hr.employer.index");
+        Route::resource("contrats/",ContratController::class,["names" => "hr.contrats"]);
+        Route::resource("positions/",PositionController::class,["names" => "hr.positions"]);
     });
 
 });
->>>>>>> 9eed11921ebc93f43bf396d636ee90b6bc3aca6f

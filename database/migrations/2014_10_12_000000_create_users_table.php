@@ -14,27 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-           
             $table->id();
             $table->string('name');
-          /*
-            $table->string('Prenom');
-            $table->string('CIN');
-            $table->string('Date_naissance');
-            $table->string('Adresse');
-            $table->string('Ville');
-            $table->string('CNSS');
-            $table->string('Solde');
-            $table->string('Solde_Global');
-            $table->string('Salire');
-            $table->string('Date_contrat');
-            $table->string('Projet');*/
+            $table->string('lname')->nullable();
+            $table->string('cin')->nullable();
+            $table->date('date_birth')->nullable();//$table->string('adresse');//$table->string('ville');
+            $table->string('cnss')->nullable();//$table->string('salire');
+            $table->date('contrat_date')->nullable();
+            $table->unsignedBigInteger('contrat_id')->nullable();
+            $table->unsignedBigInteger('position_id')->nullable();//$table->string('Projet');
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedBigInteger("manager_id")->nullable();
             $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
-
-
+            $table->foreign('contrat_id')->references('id')->on('contrats')->onDelete('cascade');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

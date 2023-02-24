@@ -25,6 +25,14 @@ class DatabaseSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
+            'demande-list',
+            'demande-create',
+            'demande-edit',
+            'demande-delete',
+            'resource-list',
+            'resource-create',
+            'resource-edit',
+            'resource-delete',
         ];
 
         foreach ($permissions as $permission) {

@@ -19,6 +19,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('demandes.store') }}" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user_id }}">
                 <div class=" px-2 py-2 mb-2 ">
                     <div class="row">
                         <div class="form-group col-6">

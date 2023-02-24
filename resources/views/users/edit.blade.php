@@ -13,40 +13,65 @@
         </div>
     @endif
 
-<<<<<<< HEAD
-<div class="card " style=" background-color: rgb(255, 255, 255)">
-<div class="card-header d-inline ">
-    <a class="btn btn-primary mr-3" href="{{ route('users.index') }}"> <i class="fa fa-arrow-left"
-            aria-hidden="true"></i></a>
-    {{ __('Edit User') }}
-</div>
-<div class="card-body">
-    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nom:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
-            </div>
-            
-=======
     <div class="card " style=" background-color: rgb(255, 255, 255)">
         <div class="card-header d-inline ">
             <a class="btn btn-primary mr-3" href="{{ route('users.index') }}"> <i class="fa fa-arrow-left"
                     aria-hidden="true"></i></a>
             {{ __('Edit User') }}
->>>>>>> 9eed11921ebc93f43bf396d636ee90b6bc3aca6f
         </div>
         <div class="card-body">
             {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="col-xs-12 col-sm-12 col-md-3">
                     <div class="form-group">
-                        <strong>Name:</strong>
-                        {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                        <strong>Nom:</strong>
+                        {!! Form::text('name', null, ['placeholder' => 'Nom', 'class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Prenom:</strong>
+                        {!! Form::text('lname', null, ['placeholder' => 'Prenom', 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>CIN:</strong>
+                        {!! Form::text('cin', null, ['placeholder' => 'CIN', 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>CNSS :</strong>
+                        {!! Form::text('cnss', null, ['placeholder' => 'CNSS', 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Date naissance :</strong>
+                        {!! Form::date('date_birth', null, ['placeholder' => 'date naissance', 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Date contrat :</strong>
+                        {!! Form::date('contrat_date', null, ['placeholder' => 'Date contrat', 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Type de contrat</strong>
+                        {!! Form::select('contrat_id', $contrats, [], ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Position</strong>
+                        {!! Form::select('position_id', $positions, [], ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+               
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Email:</strong>
                         {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
@@ -61,7 +86,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>Confirm Password:</strong>
-                        {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                        {!! Form::password('password_confirmation', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -73,13 +98,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>Manager:</strong>
-                        {!! Form::select('manager_id', $managers,$user->manager_id, ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Active:</strong>
-                        {{ Form::checkbox('is_active', null, $user->is_active) }}
+                        {!! Form::select('manager_id', $managers,null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

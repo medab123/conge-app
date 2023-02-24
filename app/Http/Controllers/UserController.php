@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrat;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -41,10 +43,12 @@ class UserController extends Controller
     {
 
         $managers = User::whereHas('roles', function ($query) {
-            $query->where('name','!=', "employer");
+            $query->where('name', '!=', "employer");
         })->pluck('name', 'id')->all();
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles',"managers"));
+        $positions = Position::pluck("name", "id")->all();
+        $contrats = Contrat::pluck("name", "id")->all();
+        return view('users.create', compact('roles', "managers", "positions", "contrats"));
     }
 
     /**
@@ -56,11 +60,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
             'roles' => 'required',
-          
+            'name' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'cin' => 'required|string|max:255',
+            'date_birth' => 'required|date',
+            'cnss' => 'required|string|max:255',
+            'contrat_date' => 'required|date',
+            'contrat_id' => 'required|exists:contrats,id',
+            'position_id' => 'required|exists:positions,id',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'manager_id' => 'nullable|exists:users,id'
         ]);
 
         $input = $request->all();
@@ -69,8 +80,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('users.index')
-            ->with('success', 'User created successfully');
+        return redirect()->back()->with('success', 'User created successfully');
     }
 
     /**
@@ -94,14 +104,15 @@ class UserController extends Controller
     public function edit($id)
     {
         $managers = User::whereHas('roles', function ($query) {
-            $query->where('name','!=', "employer");
+            $query->where('name', '!=', "employer");
         })->pluck('name', 'id')->all();
-
+        $positions = Position::pluck("name", "id")->all();
+        $contrats = Contrat::pluck("name", "id")->all();
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole',"managers"));
+        return view('users.edit', compact('user', 'roles', 'userRole', "managers","positions", "contrats"));
     }
 
     /**
@@ -148,5 +159,13 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
+    }
+
+
+
+    public function getEmployes()
+    {
+        $employes = User::join("users as m", "m.id", "users.manager_id")->select("users.*", "m.name as manager")->get();
+        return view("hr.employes.index", compact("employes"));
     }
 }
