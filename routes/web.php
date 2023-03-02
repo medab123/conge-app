@@ -4,6 +4,7 @@ use App\Http\Controllers\ContratController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,10 @@ Route::middleware('auth')->group(function () {
         Route::get("employers/",[UserController::class,"getEmployes"])->name("hr.employer.index");
         Route::resource("contrats/",ContratController::class,["names" => "hr.contrats"]);
         Route::resource("positions/",PositionController::class,["names" => "hr.positions"]);
+        Route::resource("types/",TypeController::class,["names" => "hr.types"]);
+        Route::get("types/activate/{id}",[TypeController::class,"activate"])->name("hr.types.activate");
+        Route::get("types/deactivate/{id}",[TypeController::class,"deactivate"])->name("hr.types.deactivate");
+
     });
 
 });

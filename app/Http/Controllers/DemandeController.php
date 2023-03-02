@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demande;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use \Auth;
@@ -14,22 +15,22 @@ class DemandeController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:demande-list|demande-create|demande-edit|demande-delete', ['only' => ['index']]);
+       /* $this->middleware('permission:demande-list|demande-create|demande-edit|demande-delete', ['only' => ['index']]);
         $this->middleware('permission:demande-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:demande-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:demande-delete', ['only' => ['destroy']]);
         $this->middleware('permission:demande-rejete', ['only' => ['rejete', 'hrListDemande']]);
-        $this->middleware('permission:demande-validat', ['only' => ['validat', 'hrListDemande']]);
+        $this->middleware('permission:demande-validat', ['only' => ['validat', 'hrListDemande']]);*/
     }
     public function index($user_id = null)
     {
         if( $user_id == null) $user_id = Auth::user()->id;
-        $demandes = Demande::where('demandeur_id', $user_id)->get();
+        $demandes = Demande::where('demandeur_id', $user_id)->with("type")->get();
         return view("demandes.index", compact("demandes"));
     }
     public function hrListDemande()
     {
-        $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")->select("demandes.*", "users.name")->where('manager_id', Auth::user()->id)->get();
+        $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")->with("type")->select("demandes.*", "users.name")->get();
         return view("hr.demandes.index", compact("demandes"));
     }
     public function validat($id)
@@ -44,11 +45,12 @@ class DemandeController extends Controller
         $demande = Demande::find($id);
         $demande->status = 3;
         $demande->save();
+        return back();
     }
     public function create($user_id = null)
     {
-        
-        return view("demandes.create",["user_id"=>$user_id]);
+        $types = Type::where("active",true)->get(); 
+        return view("demandes.create",["user_id"=>$user_id,"types"=>$types]);
     }
     public function store(Request $request)
     {
@@ -57,7 +59,7 @@ class DemandeController extends Controller
         if( $user_id == null) $user_id = Auth::user()->id;
         
         $demande = new Demande();
-        $demande->demandeur_id = Auth::user()->id;
+        $demande->demandeur_id = $user_id;
         $demande->status = 0;
         $demande->duration = $this->calc_duration($request->input("date_debut"), $request->input("date_fin"), $request->input("date_debut_type"), $request->input("date_fin_type"));
         $demande->date_debut = $request->input("date_debut");
@@ -65,8 +67,11 @@ class DemandeController extends Controller
         $demande->date_fin = $request->input("date_fin");
         $demande->date_fin_type = $request->input("date_fin_type");
         $demande->raison = $request->input("raison");
+        $demande->type_id = $request->input("type_id");
         $demande->save();
-        return redirect()->back();
+        if ($user_id == Auth::user()->id)
+        return redirect()->route("demandes.index");
+        return redirect()->route("hr.demandes.list");
     }
     /**
      * Calculates the duration between two dates, taking into account the start and end types of the dates.
@@ -79,7 +84,6 @@ class DemandeController extends Controller
      */
     public function calc_duration($dt_start, $dt_fin, $start_type, $fin_type)
     {
-
         $dureation = Carbon::parse($dt_fin)->diffInDays($dt_start);
         $dureation += 1;
         if ($fin_type == "Morning" || $start_type == "Afternoon")
