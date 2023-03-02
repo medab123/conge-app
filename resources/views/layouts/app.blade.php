@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+    
     @yield('styles')
 </head>
 
@@ -66,7 +69,13 @@
 
             @include('layouts.navigation')
         </aside>
-
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        @vite('resources/js/app.js')
+        <!-- AdminLTE App -->
+        <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
+    
+        @yield('scripts')
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <div class="container pt-5">
@@ -93,18 +102,13 @@
                 Anything you want
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2023-2030 khadija Ennasraoui</strong> All rights reserved.
+            <strong>Copyright &copy; 2023-2030 </strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
 
-    @vite('resources/js/app.js')
-    <!-- AdminLTE App -->
-    <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
-
-    @yield('scripts')
 </body>
 
 </html>

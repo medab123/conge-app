@@ -25,6 +25,7 @@
                             <th class="text-center  text-nowrap">Date fin </th>
                             <th class="text-center  text-nowrap">Cause</th>
                             <th class="text-center  text-nowrap">Durée</th>
+                            <th class="text-center  text-nowrap">Type</th>
                             <!-- <th class="text-center  text-nowrap">Type</th> --->
                             <th class="text-center  text-nowrap">Statu</th>
                             <th class="text-center  text-nowrap">Demandée le</th>
@@ -43,6 +44,7 @@
                                     {{ $demande->date_fin }}({{ $demande->date_fin_type }})</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->raison }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->duration }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->type->name }}</td>
                                 <td class="text-center text-nowrap fw-lighter"><span
                                         class="badge  {{ $demande->status <= 1 ? 'badge-warning' : ($demande->status == 2 ? 'badge-success' : 'badge-danger') }}">{{ $demande->status <= 1 ? 'En attend' : ($demande->status == 2 ? 'Accepte' : 'refusé') }}</span>
                                 </td>

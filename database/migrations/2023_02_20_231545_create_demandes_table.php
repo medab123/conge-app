@@ -22,8 +22,11 @@ return new class extends Migration
             $table->string("date_fin_type");
             $table->text("raison")->nullable();
             $table->float("duration");
+            $table->unsignedBigInteger("type_id");
             $table->integer("status")->nullable();
             $table->foreign('demandeur_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+
 
             $table->timestamps();
         });

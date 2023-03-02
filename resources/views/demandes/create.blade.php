@@ -22,35 +22,44 @@
                 <input type="hidden" name="user_id" value="{{ $user_id }}">
                 <div class=" px-2 py-2 mb-2 ">
                     <div class="row">
+                        <div class="form-group col-12">
+                            <label for="client">{{ __('Type de conge') }}<span class="badge badge-sucess" id="credit"></span></label>
+                            <select name="type_id" class="form-control form-control-sm" required onchange="getCredit()">
+                                <option value="Morning" selected="">select type</option>f
+                                @foreach($types as $type)
+                                    <option value="{{ $type->id}}" >{{ $type->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group col-6">
                             <label for="client">{{ __('Date de debut') }}</label>
-                            <input type="date" class="form-control form-control-sm" name="date_debut" required>
+                            <input type="date" placeholder="dd-mm-yyyy"  class="form-control form-control-sm" name="date_debut" id="dt_start" onchange="calc()"  required >
                         </div>
                         <div class="form-group col-6">
                             <label for="client">{{ __('Temps') }}</label>
-                            <select name="date_debut_type" class="form-control form-control-sm">
+                            <select name="date_debut_type" class="form-control form-control-sm" id="start_type" onchange="calc()">
                                 <option value="Morning" selected="">Matin</option>
                                 <option value="Afternoon">Après-midi</option>
                             </select>
                         </div>
                         <div class="form-group col-6">
                             <label for="commercial">{{ __('Date de fin') }}</label>
-                            <input type="date" class="form-control form-control-sm " name="date_fin" required>
+                            <input type="date"  placeholder="dd-mm-yyyy" class="form-control form-control-sm " name="date_fin" id="dt_end" onchange="calc()" required>
                         </div>
                         <div class="form-group col-6">
                             <label for="client">{{ __('Temps') }}</label>
-                            <select name="date_fin_type" class="form-control form-control-sm">
+                            <select name="date_fin_type" class="form-control form-control-sm" id="end_type" onchange="calc()">
                                 <option value="Morning">Matin</option>
                                 <option value="Afternoon" selected="">Après-midi</option>
                             </select>
                         </div>
                         <div class="form-group col-12">
                             <label for="date_reception">{{ __('Cause (optionnelle)') }}</label>
-                            <textarea class="form-control form-control-sm" name="raison" rows="3"></textarea>
+                            <textarea class="form-control form-control-sm"  name="raison" rows="3"></textarea>
                         </div>
                         <div class="form-group col">
                             <label for="quantite">{{ __('Durée') }}</label>
-                            <input type="text" class="form-control form-control-sm disabled" disabled>
+                            <input type="text" class="form-control form-control-sm disabled" disabled id="duree">
                         </div>
 
                     </div>
@@ -76,5 +85,32 @@
         </div>
     @endif
 
-
+<script>
+    //dt_start,dt_end,start_type,end_type
+    async function calc () { 
+        $("#duree").val("loading ..")
+        var dt_start = $("#dt_start").val();
+        var dt_end = $("#dt_end").val()
+        var start_type = $("#start_type").val()
+        var end_type = $("#end_type").val()
+        res = await $.get("/demandes/calc_duration/"+dt_start+"/"+dt_end+"/"+start_type+"/"+end_type).then(res => {
+            return res;
+        }).fail(()=>{
+            $("#duree").val("")
+        })
+        $("#duree").val(res)
+        console.log(res);       
+    }
+    async function getCredit(){
+        $("#credit").val("loading ..")
+        var type = $("#type").val();
+        res = await $.get("/credit/getCredit/"+type).then(res => {
+            return res;
+        }).fail(()=>{
+            $("#credit").val("")
+        })
+        $("#credit").val('('+res+')')
+        console.log(res);   
+    }
+</script>
 @endsection
