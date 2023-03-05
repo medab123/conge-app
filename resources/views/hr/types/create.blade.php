@@ -25,6 +25,10 @@
                             <label>{{ __('Nom de type') }}</label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
                         </div>
+                        <div class="form-group col-12">
+                            <label>{{ __('Nom de type') }}</label>
+                            <input type="date" class="form-control form-control-sm" name="name" required>
+                        </div>
 
                        
                     </div>

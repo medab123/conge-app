@@ -168,4 +168,5 @@ class UserController extends Controller
         $employes = User::join("users as m", "m.id", "users.manager_id")->select("users.*", "m.name as manager")->get();
         return view("hr.employes.index", compact("employes"));
     }
+    
 }
