@@ -43,14 +43,14 @@ class UserController extends Controller
     public function create()
     {
 
-        $managers = User::whereHas('roles', function ($query) {
+       /* $managers = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', "employer");
-        })->pluck('name', 'id')->all();
+        })->pluck('name', 'id')->all();*/
         $roles = Role::pluck('name', 'name')->all();
         $positions = Position::pluck("name", "id")->all();
         $contrats = Contrat::pluck("name", "id")->all();
         $projets = Projet::pluck("name","id")->all();
-        return view('users.create', compact('roles', "managers", "positions", "contrats","projets"));
+        return view('users.create', compact('roles', /*"managers",*/ "positions", "contrats","projets"));
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
             'projet_id' => 'required|exists:projets,id',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'manager_id' => 'nullable|exists:users,id'
+            //'manager_id' => 'nullable|exists:users,id'
         ]);
 
         $input = $request->all();
@@ -107,16 +107,16 @@ class UserController extends Controller
     public function edit($id)
     {
         $projets = Projet::pluck("name","id")->all();
-        $managers = User::whereHas('roles', function ($query) {
+        /*$managers = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', "employer");
-        })->pluck('name', 'id')->all();
+        })->pluck('name', 'id')->all();*/
         $positions = Position::pluck("name", "id")->all();
         $contrats = Contrat::pluck("name", "id")->all();
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole', "managers","positions", "contrats","projets"));
+        return view('users.edit', compact('user', 'roles', 'userRole', /*"managers",*/"positions", "contrats","projets"));
     }
 
     /**
@@ -140,7 +140,7 @@ class UserController extends Controller
             'position_id' => 'required|exists:positions,id',
             'projet_id' => 'required|exists:projets,id',
             'email' => 'required|email|unique:users,email,' . $id,
-            'manager_id' => 'nullable|exists:users,id'
+            //'manager_id' => 'nullable|exists:users,id'
         ]);
        
         $input = $request->all();
@@ -177,7 +177,7 @@ class UserController extends Controller
 
     public function getEmployes()
     {
-        $employes = User::join("users as m", "m.id", "users.manager_id")->with("projet")->select("users.*", "m.name as manager")->get();
+        $employes = User::with("projet")->with("contrat")->get();
         return view("hr.employes.index", compact("employes"));
     }
     
