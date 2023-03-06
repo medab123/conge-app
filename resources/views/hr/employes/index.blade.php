@@ -27,7 +27,8 @@
                             <th class="text-center  text-nowrap">Manager</th>
                             <th class="text-center  text-nowrap">Cin</th>
                             <th class="text-center  text-nowrap">Date d'embauche</th>
-                            <th class="text-center  text-nowrap">position</th>
+                            <th class="text-center  text-nowrap">Position</th>
+                            <th class="text-center  text-nowrap">Projet</th>
 
                             <th class="text-right pr-4"></th>
                         </tr>
@@ -45,6 +46,7 @@
                                 <td class="text-center text-nowrap">{{ $employe->cin }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->contrat_date }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->position->name }}</td>
+                                <td class="text-center text-nowrap">{{ $employe->projet->name }}</td>
 
                                 <td class="text-right text-nowrap">
                                     <div class="dropdown d-inline">

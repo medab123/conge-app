@@ -120,6 +120,14 @@
                 </ul>
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
+                        <a href="{{ route('hr.projets.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>{{ __('Projets') }}</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
                         <a href="{{ route('hr.types.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Type de conge') }}</p>

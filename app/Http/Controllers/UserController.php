@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contrat;
 use App\Models\Position;
+use App\Models\Projet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -48,7 +49,8 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $positions = Position::pluck("name", "id")->all();
         $contrats = Contrat::pluck("name", "id")->all();
-        return view('users.create', compact('roles', "managers", "positions", "contrats"));
+        $projets = Projet::pluck("name","id")->all();
+        return view('users.create', compact('roles', "managers", "positions", "contrats","projets"));
     }
 
     /**
@@ -69,6 +71,7 @@ class UserController extends Controller
             'contrat_date' => 'required|date',
             'contrat_id' => 'required|exists:contrats,id',
             'position_id' => 'required|exists:positions,id',
+            'projet_id' => 'required|exists:projets,id',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'manager_id' => 'nullable|exists:users,id'
@@ -103,6 +106,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $projets = Projet::pluck("name","id")->all();
         $managers = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', "employer");
         })->pluck('name', 'id')->all();
@@ -112,7 +116,7 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole', "managers","positions", "contrats"));
+        return view('users.edit', compact('user', 'roles', 'userRole', "managers","positions", "contrats","projets"));
     }
 
     /**
@@ -125,12 +129,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'roles' => 'required',
+            'name' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'cin' => 'required|string|max:255',
+            'date_birth' => 'required|date',
+            'cnss' => 'required|string|max:255',
+            'contrat_date' => 'required|date',
+            'contrat_id' => 'required|exists:contrats,id',
+            'position_id' => 'required|exists:positions,id',
+            'projet_id' => 'required|exists:projets,id',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'manager_id' => 'nullable|exists:users,id'
         ]);
-
+       
         $input = $request->all();
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
@@ -165,7 +177,7 @@ class UserController extends Controller
 
     public function getEmployes()
     {
-        $employes = User::join("users as m", "m.id", "users.manager_id")->select("users.*", "m.name as manager")->get();
+        $employes = User::join("users as m", "m.id", "users.manager_id")->with("projet")->select("users.*", "m.name as manager")->get();
         return view("hr.employes.index", compact("employes"));
     }
     

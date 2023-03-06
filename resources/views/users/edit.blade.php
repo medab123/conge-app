@@ -70,6 +70,12 @@
                         {!! Form::select('position_id', $positions, [], ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Projet</strong>
+                        {!! Form::select('projet_id', $projets, [], ['class' => 'form-control']) !!}
+                    </div>
+                </div>
                
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">

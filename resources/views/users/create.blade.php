@@ -22,7 +22,6 @@
             {{ __('Create New User') }}
         </div>
         <div class="card-body">
-            'name', 'lname', 'cin', 'date_birth', 'cnss', 'contrat_date', 'contrat_id', 'position_id', 'email', 'password', 'manager_id'
             {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3">
@@ -71,6 +70,12 @@
                     <div class="form-group">
                         <strong>Position</strong>
                         {!! Form::select('position_id', $positions, [], ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Projet</strong>
+                        {!! Form::select('projet_id', $projets, [], ['class' => 'form-control']) !!}
                     </div>
                 </div>
                

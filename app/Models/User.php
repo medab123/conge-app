@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'lname', 'cin', 'date_birth', 'cnss', 'contrat_date', 'contrat_id', 'position_id', 'email', 'password', 'manager_id'
+        'name', 'lname', 'cin', 'date_birth', 'cnss', 'contrat_date', 'contrat_id', 'position_id','projet_id', 'email', 'password', 'manager_id'
     ];
 
     /**
@@ -53,5 +53,9 @@ class User extends Authenticatable
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id');
+    }
+    public function projet()
+    {
+        return $this->belongsTo(Projet::class, 'projet_id');
     }
 }
