@@ -46,7 +46,7 @@
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->duration }}</td>
                                 
                                 <td class="text-center text-nowrap fw-lighter"><span
-                                        class="badge  {{ $demande->status <= 1 ? 'badge-warning' : ($demande->status == 2 ? 'badge-success' : 'badge-danger') }}">{{ $demande->status <= 1 ? 'En cour' : ($demande->status == 2 ? 'Accepte' : 'refusé') }}</span>
+                                        class="badge  {{ $demande->status <= 1 ? 'badge-warning' : ($demande->status == 2 ? 'badge-success' : 'badge-danger') }}">{{ $demande->status <= 1 ? 'En cour' : ($demande->status == 2 ? 'Validé' : 'refusé') }}</span>
                                 </td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->created_at }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->updated_at }}</td>

@@ -33,13 +33,15 @@ class DemandeController extends Controller
         $roles  = Auth::user()->roles()->pluck("id")->all();
         $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")
             ->join("projets","projets.id","users.projet_id")
-            ->with("type")->select("demandes.*", "users.name")
-            ->where("projets.manager_id",\Auth::user()->id);
-        if(!in_array(3,$roles)){
-            $demandes->get();
-        }else{
-            $demandes->orWhere("status",1)->get();
-        }
+            /*->with("type")*/->select("demandes.*", "users.name")
+            ->where("projets.manager_id",Auth::user()->id);
+         if(!in_array(2,$roles)){
+            $demandes =  $demandes->get();
+         }else{
+           // dd($demandes);
+            $demandes =  $demandes->orWhere("status","=",1)->get();
+         }
+
         
         return view("hr.demandes.index", compact("demandes"));
 
