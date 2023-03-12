@@ -71,6 +71,7 @@
                     </div>
                 </div>
                
+               
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Email:</strong>
@@ -95,10 +96,16 @@
                         {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', 'multiple']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6">
+                <!--<div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>Manager:</strong>
-                        {!! Form::select('manager_id', $managers,null, ['class' => 'form-control']) !!}
+                        {!! /*Form::select('manager_id', $managers,null, ['class' => 'form-control'])*/null !!}
+                    </div>
+                </div>--->
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Projet</strong>
+                        {!! Form::select('projet_id', $projets, [], ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -22,12 +22,9 @@
                         <tr>
                             <th class="text-center  text-nowrap">#</th>
                             <th class="text-center  text-nowrap">Nom</th>
+                            <th class="text-center  text-nowrap">Period</th>
                             <th class="text-center  text-nowrap">Description</th>
                             <th class="text-center  text-nowrap">Etate</th>
-
-
-
-
                             <th class="text-right pr-4"></th>
                         </tr>
                     </thead>
@@ -36,6 +33,7 @@
                             <tr>
                                 <td class="text-center text-nowrap fw-lighter">{{ $type->id }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $type->name }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $type->start_date }}-{{ $type->end_date }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $type->description }}</td>
                                 <td class="text-center text-nowrap fw-lighter">
                                     <input onchange="te({{ $type->id }},this)" class="checkbox_state" data-size="xs" data-typeid="{{ $type->id }}"

@@ -35,7 +35,7 @@
                         @foreach ($demandes as $demande)
                             <tr>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->id }}</td>
-                                <td class="text-center text-nowrap fw-lighter">{{ $demande->name }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $demande->demandeur->name }} {{ $demande->demandeur->last_name }}</td>
                                 <td class="text-center text-nowrap fw-lighter">
                                     {{ $demande->date_debut }}({{ $demande->date_debut_type }})</td>
                                 <td class="text-center text-nowrap fw-lighter">

@@ -15,19 +15,19 @@
     @endif
 
     <div class="card">
-        <div class="card-header">{{ __('Ajouter une type') }}</div>
+        <div class="card-header">{{ __('Ajouter une projet') }}</div>
         <div class="card-body">
-            <form method="POST" action="{{ route('hr.types.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('hr.projets.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class=" px-2 py-2 mb-2 ">
                     <div class="row">
                         <div class="form-group col-12">
-                            <label>{{ __('Nom de type') }}</label>
+                            <label>{{ __('Nom de projet') }}</label>
                             <input type="text" class="form-control form-control-sm" name="name" required>
                         </div>
-                        <div class="form-group col-12">
-                            <label>{{ __('Nom de type') }}</label>
-                            <input type="date" class="form-control form-control-sm" name="name" required>
+                        <div class="form-group">
+                            <strong>Manager:</strong>
+                            {!! Form::select('manager_id', $managers,null, ['class' => 'form-control']) !!}
                         </div>
 
                        

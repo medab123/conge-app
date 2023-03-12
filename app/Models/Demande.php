@@ -14,4 +14,8 @@ class Demande extends Model
     {
         return $this->belongsTo(Type::class);
     }
+    public function demandeur()
+    {
+        return $this->belongsTo(User::class,"demandeur_id");
+    }
 }

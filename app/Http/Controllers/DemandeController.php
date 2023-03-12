@@ -30,7 +30,10 @@ class DemandeController extends Controller
     }
     public function hrListDemande()
     {
-        $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")->with("type")->select("demandes.*", "users.name")->get();
+        $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")
+        ->join("projets","projets.id","users.projet_id")
+        ->with("type")->select("demandes.*", "users.name")
+        ->where("projets.manager_id",\Auth::user()->id)->get();
         return view("hr.demandes.index", compact("demandes"));
     }
     public function validat($id)

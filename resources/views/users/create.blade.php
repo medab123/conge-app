@@ -22,7 +22,6 @@
             {{ __('Create New User') }}
         </div>
         <div class="card-body">
-            'name', 'lname', 'cin', 'date_birth', 'cnss', 'contrat_date', 'contrat_id', 'position_id', 'email', 'password', 'manager_id'
             {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3">
@@ -74,6 +73,7 @@
                     </div>
                 </div>
                
+               
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Email:</strong>
@@ -98,10 +98,16 @@
                         {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6">
+                <!--<div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <strong>Manager:</strong>
-                        {!! Form::select('manager_id', $managers,null, ['class' => 'form-control']) !!}
+                        {!! /*Form::select('manager_id', $managers,null, ['class' => 'form-control'])*/null !!}
+                    </div>
+                </div>--->
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="form-group">
+                        <strong>Projet</strong>
+                        {!! Form::select('projet_id', $projets, [], ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
