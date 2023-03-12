@@ -22,15 +22,7 @@
                 <input type="hidden" name="user_id" value="{{ $user_id }}">
                 <div class=" px-2 py-2 mb-2 ">
                     <div class="row">
-                        <div class="form-group col-12">
-                            <label for="client">{{ __('Type de conge') }}<span class="badge badge-sucess" id="credit"></span></label>
-                            <select name="type_id" class="form-control form-control-sm" required onchange="getCredit()">
-                                <option value="Morning" selected="">select type</option>f
-                                @foreach($types as $type)
-                                    <option value="{{ $type->id}}" >{{ $type->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
                         <div class="form-group col-6">
                             <label for="client">{{ __('Date de debut') }}</label>
                             <input type="date" placeholder="dd-mm-yyyy"  class="form-control form-control-sm" name="date_debut" id="dt_start" onchange="calc()"  required >

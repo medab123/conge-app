@@ -102,14 +102,14 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-treeview" style="display: none;">
+               <!-- <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
-                        <a href="{{ route('hr.contrats.index') }}" class="nav-link">
+                        <a href="{{ /*route('hr.contrats.index')*/null }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Contrats') }}</p>
                         </a>
                     </li>
-                </ul>
+                </ul>-->
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
                         <a href="{{ route('hr.positions.index') }}" class="nav-link">
@@ -126,14 +126,14 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-treeview" style="display: none;">
+              <!--  <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
-                        <a href="{{ route('hr.types.index') }}" class="nav-link">
+                        <a href="{{ /*route('hr.types.index')*/null }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Type de conge') }}</p>
                         </a>
                     </li>
-                </ul>
+                </ul>-->
                 
 
             </li>

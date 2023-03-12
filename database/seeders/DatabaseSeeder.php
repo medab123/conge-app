@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Contrat;
 use App\Models\Position;
+use App\Models\Projet;
 use App\Models\Type;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -79,8 +80,12 @@ class DatabaseSeeder extends Seeder
         $roleadmin->syncPermissions($permissions);
      
         $admin->assignRole([$roleadmin->id]);
+        $gerant->assignRole([$rolegerant->id]);
+        $dircteur->assignRole([$roledircteur->id]);
+        $employer->assignRole([$roleemployer->id]);
 
-        $year = Carbon::now()->year;
+
+      /*  $year = Carbon::now()->year;
         $start_date = Carbon::parse($year."-01-01");
         $end_date = Carbon::parse($year."-12-31");
         Type::create(['name'=>"congé annuel $year","description"=>"congé paye depui ton solde","start_date"=>$start_date,"end_date"=>$end_date,"active"=>true]);
@@ -88,7 +93,8 @@ class DatabaseSeeder extends Seeder
         Type::create(['name'=>"Congé maternité et naissance","description"=>"congé paye","active"=>true]);
         Type::create(['name'=>"Congé de récuperation","description"=>"congé de récuperation","active"=>true]);
 
-        Contrat::create(['name'=>"CDI 21 jour","nb_jours"=>21]);
+        Contrat::create(['name'=>"CDI 21 jour","nb_jours"=>21]);*/
         Position::create(['name'=>"indexeur"]);
+        Projet::create(['name'=>"ONEE",'ville'=>'Rabat','manager_id'=>2]);
     }
 }

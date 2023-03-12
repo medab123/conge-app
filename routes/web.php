@@ -48,14 +48,15 @@ Route::middleware('auth')->group(function () {
         Route::get("demandes/rejete/{id}",[DemandeController::class,"rejete"])->name("hr.demandes.rejete");
         Route::get("demandes/validat/{id}",[DemandeController::class,"validat"])->name("hr.demandes.validat");
         Route::get("employers/",[UserController::class,"getEmployes"])->name("hr.employer.index");
-        Route::resource("contrats/",ContratController::class,["names" => "hr.contrats"]);
+       // Route::resource("contrats/",ContratController::class,["names" => "hr.contrats"]);
         Route::resource("positions/",PositionController::class,["names" => "hr.positions"]);
         Route::resource("projets/",ProjetController::class,["names" => "hr.projets"]);
 
-        Route::resource("types/",TypeController::class,["names" => "hr.types"]);
+       //// Route::resource("types/",TypeController::class,["names" => "hr.types"]);
         Route::get("types/activate/{id}",[TypeController::class,"activate"])->name("hr.types.activate");
         Route::get("types/deactivate/{id}",[TypeController::class,"deactivate"])->name("hr.types.deactivate");
 
     });
 
 });
+?>

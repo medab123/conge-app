@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contrat;
+//use App\Models\Contrat;
 use App\Models\Position;
 use App\Models\Projet;
 use Illuminate\Http\Request;
@@ -48,9 +48,9 @@ class UserController extends Controller
         })->pluck('name', 'id')->all();*/
         $roles = Role::pluck('name', 'name')->all();
         $positions = Position::pluck("name", "id")->all();
-        $contrats = Contrat::pluck("name", "id")->all();
+        //$contrats = Contrat::pluck("name", "id")->all();
         $projets = Projet::pluck("name","id")->all();
-        return view('users.create', compact('roles', /*"managers",*/ "positions", "contrats","projets"));
+        return view('users.create', compact('roles', /*"managers",*/ "positions", /*"contrats",*/"projets"));
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
             'date_birth' => 'required|date',
             'cnss' => 'required|string|max:255',
             'contrat_date' => 'required|date',
-            'contrat_id' => 'required|exists:contrats,id',
+            //'contrat_id' => 'required|exists:contrats,id',
             'position_id' => 'required|exists:positions,id',
             'projet_id' => 'required|exists:projets,id',
             'email' => 'required|string|email|max:255|unique:users',
@@ -106,17 +106,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $projets = Projet::pluck("name","id")->all();
+        $projets = Projet::all();
         /*$managers = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', "employer");
         })->pluck('name', 'id')->all();*/
         $positions = Position::pluck("name", "id")->all();
-        $contrats = Contrat::pluck("name", "id")->all();
+       //$contrats = Contrat::pluck("name", "id")->all();
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole', /*"managers",*/"positions", "contrats","projets"));
+        return view('users.edit', compact('user', 'roles', 'userRole', /*"managers",*/"positions", /*"contrats",*/"projets"));
     }
 
     /**
@@ -136,7 +136,7 @@ class UserController extends Controller
             'date_birth' => 'required|date',
             'cnss' => 'required|string|max:255',
             'contrat_date' => 'required|date',
-            'contrat_id' => 'required|exists:contrats,id',
+            //'contrat_id' => 'required|exists:contrats,id',
             'position_id' => 'required|exists:positions,id',
             'projet_id' => 'required|exists:projets,id',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -177,7 +177,7 @@ class UserController extends Controller
 
     public function getEmployes()
     {
-        $employes = User::with("projet")->with("contrat")->get();
+        $employes = User::with("projet")->/*with("contrat")->*/get();
         return view("hr.employes.index", compact("employes"));
     }
     
