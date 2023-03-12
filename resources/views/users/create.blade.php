@@ -24,19 +24,19 @@
         <div class="card-body">
             {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="col-xs-12 col-sm-12 col-md-4">
                     <div class="form-group">
                         <strong>Nom:</strong>
                         {!! Form::text('name', null, ['placeholder' => 'Nom', 'class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="col-xs-12 col-sm-12 col-md-4">
                     <div class="form-group">
                         <strong>Prenom:</strong>
                         {!! Form::text('lname', null, ['placeholder' => 'Prenom', 'class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3">
+                <div class="col-xs-12 col-sm-12 col-md-4">
                     <div class="form-group">
                         <strong>CIN:</strong>
                         {!! Form::text('cin', null, ['placeholder' => 'CIN', 'class' => 'form-control']) !!}
@@ -60,12 +60,12 @@
                         {!! Form::date('contrat_date', null, ['placeholder' => 'Date contrat', 'class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-3">
+              <!--  <div class="col-xs-12 col-sm-12 col-md-3">
                     <div class="form-group">
                         <strong>Type de contrat</strong>
-                        {!! Form::select('contrat_id', $contrats, [], ['class' => 'form-control']) !!}
+                        {!!/* Form::select('contrat_id', $contrats, [], ['class' => 'form-control']) */ null!!}
                     </div>
-                </div>
+                </div>-->
                 <div class="col-xs-12 col-sm-12 col-md-3">
                     <div class="form-group">
                         <strong>Position</strong>

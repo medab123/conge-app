@@ -22,7 +22,9 @@
                         <tr>
                             <th class="text-center  text-nowrap">#</th>
                             <th class="text-center  text-nowrap">Nom</th>
+                            <th class="text-center  text-nowrap">Ville</th>
                             <th class="text-center  text-nowrap">Manger</th>
+
                             
                             
                             <th class="text-center  text-nowrap">Crée le</th>
@@ -36,7 +38,8 @@
                                 <td class="text-center text-nowrap fw-lighter">{{ $projet->id }}</td>
                               
                                 <td class="text-center text-nowrap fw-lighter">{{ $projet->name }}</td>
-                                <td class="text-center text-nowrap fw-lighter">{{ $projet->manager->name }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $projet->ville }}</td>
+                                <td class="text-center text-nowrap fw-lighter">{{ $projet->manager->name }}</td> 
                                 <td class="text-center text-nowrap fw-lighter"><small>{{ $projet->created_at }}</small></td>
                                 <td class="text-right text-nowrap fw-lighter">
                                     @can('resource-delete')

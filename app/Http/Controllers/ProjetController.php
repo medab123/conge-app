@@ -15,11 +15,13 @@ class ProjetController extends Controller
 	}
     public function create(){
         $managers = User::whereHas('roles', function ($query) {
-            $query->where('name', '!=', "employer");
+            $query->whereIn('name',["gerant","dircteur"]);
         })->pluck('name', 'id')->all();
 		//$projet = Projet::find($id);
 		return view("hr.projets.create",compact("managers"));
 	}
+
+
     public function edit($id){
         $managers = User::whereHas('roles', function ($query) {
             $query->where('name', '!=', "employer");
@@ -30,6 +32,7 @@ class ProjetController extends Controller
 	public function store(Request $request){
 		$projet = new Projet();
 		$projet->name = $request->input("name");
+		$projet->ville = $request->input("ville");
         $projet->manager_id = $request->input("manager_id");
 		$projet->save();
 		return redirect()->route("hr.projets.index")->with('success', 'Projet created successfully');

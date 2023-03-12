@@ -23,7 +23,7 @@
                             <th class="text-center  text-nowrap">Name</th>
                             <th class="text-center  text-nowrap">Email</th>
                             <th class="text-center  text-nowrap">Roles</th>
-                            <th class="text-center  text-nowrap">Active</th>
+                            <!--<th class="text-center  text-nowrap">Active</th>-->
 
                             <th class="text-right pr-4">Action</th>
                         </tr>
@@ -42,9 +42,9 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td class="text-center text-nowrap"><label
+                             <!--   <td class="text-center text-nowrap"><label
                                         class="badge badge-{{ $user->is_active == true ? 'success' : 'danger' }}">{{ $user->is_active == true ? 'Active' : 'Desactiver' }}</label>
-                                </td>
+                                </td>-->    
 
                                 <td class="text-right text-nowrap">
 

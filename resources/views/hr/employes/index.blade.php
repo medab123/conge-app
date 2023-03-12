@@ -23,7 +23,7 @@
                             <th class="text-center  text-nowrap">Nom</th>
                             <th class="text-center  text-nowrap">Prenom</th>
                             <th class="text-center  text-nowrap">E-mail</th>
-                            <th class="text-center  text-nowrap">Contrat</th>
+                           <!-- <th class="text-center  text-nowrap">Contrat</th>--->
                             <!--<th class="text-center  text-nowrap">Manager</th>--->
                             <th class="text-center  text-nowrap">Cin</th>
                             <th class="text-center  text-nowrap">Date d'embauche</th>
@@ -40,7 +40,6 @@
                                 <td class="text-center text-nowrap">{{ $employe->name }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->lname }}</td>
                                 <td class="text-center text-nowrap">{{ $employe->email }}</td>
-                                <td class="text-center text-nowrap">{{ $employe->contrat?->name }}</td>
                                 <!--<td class="text-center text-nowrap">{{ $employe->manager }}</td>-->
 
                                 <td class="text-center text-nowrap">{{ $employe->cin }}</td>

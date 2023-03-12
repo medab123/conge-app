@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Demande;
-use App\Models\Type;
+ use App\Models\Demande;
+// use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use \Auth;
@@ -25,7 +25,7 @@ class DemandeController extends Controller
     public function index($user_id = null)
     {
         if( $user_id == null) $user_id = Auth::user()->id;
-        $demandes = Demande::where('demandeur_id', $user_id)->with("type")->get();
+        $demandes = Demande::where('demandeur_id', $user_id)/*->with("type")*/->get();
         return view("demandes.index", compact("demandes"));
     }
     public function hrListDemande()
@@ -67,8 +67,8 @@ class DemandeController extends Controller
     }
     public function create($user_id = null)
     {
-        $types = Type::where("active",true)->get(); 
-        return view("demandes.create",["user_id"=>$user_id,"types"=>$types]);
+       // $types = Type::where("active",true)->get(); 
+    return view("demandes.create",["user_id"=>$user_id,/*"types"=>$types*/]);
     }
     public function store(Request $request)
     {
@@ -85,7 +85,7 @@ class DemandeController extends Controller
         $demande->date_fin = $request->input("date_fin");
         $demande->date_fin_type = $request->input("date_fin_type");
         $demande->raison = $request->input("raison");
-        $demande->type_id = $request->input("type_id");
+        //$demande->type_id = $request->input("type_id");
         $demande->save();
         if ($user_id == Auth::user()->id)
         return redirect()->route("demandes.index");

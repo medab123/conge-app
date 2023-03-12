@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("ville");
             $table->unsignedBigInteger("manager_id")->nullable();
             //$table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
