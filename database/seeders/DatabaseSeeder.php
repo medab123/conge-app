@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Contrat;
 use App\Models\Position;
+use App\Models\Projet;
 use App\Models\Type;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -48,25 +49,30 @@ class DatabaseSeeder extends Seeder
         }
 
         $admin = User::create([
-            'name' => 'admin', // smit xarika MasterArchives
+            'name' => 'admin', 
+            'lname' => 'test',
             'email' => 'admin@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $gerant = User::create([
             'name' => 'gerant', 
+            'lname' => 'test',
             'email' => 'gerant@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $dircteur = User::create([
             'name' => 'dircteur', 
+            'lname' => 'test',
             'email' => 'dircteur@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $employer = User::create([
-            'name' => 'employer', 
+            'name' => 'employe', 
+            'lname' => 'test',
             'email' => 'employer@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
+       
         
     
         $roleadmin = Role::create(['name' => 'admin']);
@@ -79,6 +85,9 @@ class DatabaseSeeder extends Seeder
         $roleadmin->syncPermissions($permissions);
      
         $admin->assignRole([$roleadmin->id]);
+        $gerant->assignRole([$rolegerant->id]);
+        $dircteur->assignRole([$roledircteur->id]);
+        $employer->assignRole([$roleemployer->id]);
 
         $year = Carbon::now()->year;
         $start_date = Carbon::parse($year."-01-01");
@@ -90,5 +99,14 @@ class DatabaseSeeder extends Seeder
 
         Contrat::create(['name'=>"CDI 21 jour","nb_jours"=>21]);
         Position::create(['name'=>"indexeur"]);
+        Projet::create([
+            'name' => 'test1', 
+            'manager_id' => 2,
+            
+        ]);
+        Projet::create([
+            'name' => 'test2', 
+            'manager_id' => 3,
+        ]);
     }
 }
