@@ -49,25 +49,30 @@ class DatabaseSeeder extends Seeder
         }
 
         $admin = User::create([
-            'name' => 'admin', // smit xarika MasterArchives
+            'name' => 'admin', 
+            'lname' => 'test',
             'email' => 'admin@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $gerant = User::create([
             'name' => 'gerant', 
+            'lname' => 'test',
             'email' => 'gerant@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $dircteur = User::create([
             'name' => 'dircteur', 
+            'lname' => 'test',
             'email' => 'dircteur@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
         $employer = User::create([
-            'name' => 'employer', 
+            'name' => 'employe', 
+            'lname' => 'test',
             'email' => 'employer@master-archives.ma',
             'password' => bcrypt('12345678')
         ]);
+       
         
     
         $roleadmin = Role::create(['name' => 'admin']);

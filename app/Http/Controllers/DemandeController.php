@@ -30,22 +30,38 @@ class DemandeController extends Controller
     }
     public function hrListDemande()
     {
-        
+        $roles  = Auth::user()->roles()->pluck("id")->all();
         $demandes = Demande::join("users", "users.id", "demandes.demandeur_id")
-        ->join("projets","projets.id","users.projet_id")
-        /*->with("type")*/->select("demandes.*", "users.name")
-        ->where("projets.manager_id",\Auth::user()->id)->get();
+            ->join("projets","projets.id","users.projet_id")
+            /*->with("type")*/->select("demandes.*", "users.name")
+            ->where("projets.manager_id",Auth::user()->id);
+         if(!in_array(2,$roles)){
+            $demandes =  $demandes->get();
+         }else{
+           // dd($demandes);
+            $demandes =  $demandes->orWhere("status","=",1)->get();
+         }
+
+        
         return view("hr.demandes.index", compact("demandes"));
+
+       
     }
     public function validat($id)
     {
+        $status = 1;
+        $roles  = Auth::user()->roles()->pluck("id")->all();
+        if(in_array(2,$roles)){
+            $status = 2;
+        }
         $demande = Demande::find($id);
-        $demande->status = 2;
+        $demande->status = $status;
         $demande->save();
         return back();
     }
     public function rejete($id)
     {
+        
         $demande = Demande::find($id);
         $demande->status = 3;
         $demande->save();

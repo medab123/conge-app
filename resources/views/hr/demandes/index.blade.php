@@ -44,7 +44,7 @@
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->duration }}</td>
 
                                 <td class="text-center text-nowrap fw-lighter"><span
-                                        class="badge  {{ $demande->status <= 1 ? 'badge-warning' : ($demande->status == 2 ? 'badge-success' : 'badge-danger') }}">{{ $demande->status <= 1 ? 'En cour' : ($demande->status == 2 ? 'Accepte' : 'refusé') }}</span>
+                                        class="badge  {{ $demande->status <= 1 ? 'badge-warning' : ($demande->status == 2 ? 'badge-success' : 'badge-danger') }}">{{ $demande->status == 0 ? 'En cour' : ($demande->status == 1 ? 'Accepte' : ($demande->status == 2 ? 'Validé' : 'refusé')) }}</span>
                                 </td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->created_at }}</td>
                                 <td class="text-center text-nowrap fw-lighter">{{ $demande->updated_at }}</td>
@@ -52,14 +52,14 @@
 
 
                                     @can('demande-validat')
-                                        @if ($demande->status == 0)
+                                        @if ($demande->status <= 1)
                                             <a href="{{ route('hr.demandes.validat', ['id' => $demande->id]) }}"
                                                 class="btn  btn-sm"><i class="fa fa-check text-success" aria-hidden="true"></i>
                                             </a>
                                         @endif
                                     @endcan
                                     @can('demande-rejete')
-                                        @if ($demande->status == 0)
+                                        @if ($demande->status <= 1)
                                             <a href="{{ route('hr.demandes.rejete', ['id' => $demande->id]) }}"
                                                 class="btn  btn-sm"><i class="fa fa-times text-danger" aria-hidden="true"></i>
                                             </a>
